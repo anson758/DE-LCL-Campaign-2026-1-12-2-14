@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DE LCL Campaign Weekly Flash</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px;
+            line-height: 1.4;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .subtitle {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 25px 30px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title .emoji {
+            margin-right: 10px;
+            font-size: 1.1em;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 18px 22px;
+            border-radius: 12px;
+            margin: 15px 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .highlight-box h3 {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+        
+        .highlight-box p {
+            font-size: 1.05em;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px 12px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .metric-card .label {
+            font-size: 0.8em;
+            color: #555;
+            margin-bottom: 6px;
+        }
+        
+        .metric-card .value {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .metric-card .growth {
+            font-size: 0.95em;
+            color: #27ae60;
+            margin-top: 5px;
+        }
+        
+        .metric-card .growth.negative {
+            color: #e74c3c;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 0.9em;
+        }
+        
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        th, td {
+            padding: 10px 8px;
+            text-align: left;
+        }
+        
+        th {
+            font-size: 0.88em;
+        }
+        
+        tbody tr {
+            border-bottom: 1px solid #eee;
+            transition: background 0.3s ease;
+        }
+        
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        tbody tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .star-performer {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%) !important;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        
+        .status-green {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .action-items {
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .action-item {
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .action-item p {
+            font-size: 0.9em;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            font-size: 0.9em;
+        }
+        
+        .footer p {
+            margin: 3px 0;
+        }
+        
+        .btn-toggle-edit {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: transparent;
+            color: rgba(255,255,255,0.3);
+            padding: 4px 8px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.7em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-toggle-edit:hover {
+            color: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .data-input-panel {
+            background: linear-gradient(135deg, #e0e5ec 0%, #f5f7fa 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 2px dashed #667eea;
+            display: none;
+        }
+        
+        .data-input-panel.active {
+            display: block;
+        }
+        
+        .data-input-panel h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .btn-update {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-right: 8px;
+        }
+        
+        .btn-update:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 18px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-update:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-reset {
+            background: linear-gradient(135deg, #636e72 0%, #2d3436 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-reset:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Team Box */
+        .team-box {
+            background: #f8f9fa;
+            border-radius: 14px;
+            padding: 22px 24px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .team-box.se-team {
+            border-left-color: #00cec9;
+        }
+        
+        .team-box h3 {
+            color: #667eea;
+            margin-bottom: 18px;
+            font-size: 1.15em;
+        }
+        
+        .team-box.se-team h3 {
+            color: #00cec9;
+        }
+        
+        .sub-section-title {
+            color: #444;
+            font-size: 0.9em;
+            margin: 20px 0 12px 0;
+            padding: 8px 12px;
+            border-left: 4px solid #27ae60;
+            background: rgba(39, 174, 96, 0.1);
+            border-radius: 0 8px 8px 0;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .sub-section-title:first-of-type {
+            margin-top: 0;
+        }
+        
+        .sub-section-title.rate {
+            border-left-color: #3498db;
+            background: rgba(52, 152, 219, 0.1);
+        }
+        
+        .sub-section-title.convert {
+            border-left-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+        
+        .mini-table {
+            margin: 12px 0 20px 0;
+            font-size: 0.88em;
+        }
+        
+        .mini-table th, .mini-table td {
+            padding: 10px 8px;
+        }
+        
+        .mini-table thead {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+        }
+        
+        .mini-table.rate thead {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+        }
+        
+        .mini-table.convert thead {
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+        }
+        
+        .mini-table.se thead {
+            background: linear-gradient(135deg, #81ecec 0%, #00cec9 100%);
+        }
+        
+        .groupid-badge {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        
+        .rank-badge {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.75em;
+            color: white;
+        }
+        
+        .rank-1 {
+            background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
+            box-shadow: 0 2px 6px rgba(243, 156, 18, 0.5);
+        }
+        
+        .rank-2 {
+            background: linear-gradient(135deg, #bdc3c7 0%, #95a5a6 100%);
+            box-shadow: 0 2px 6px rgba(149, 165, 166, 0.5);
+        }
+        
+        .rank-3 {
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            box-shadow: 0 2px 6px rgba(211, 84, 0, 0.5);
+        }
+        
+        .rank-container {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        
+        .rank-label {
+            font-size: 0.6em;
+            color: #666;
+            display: block;
+            text-align: center;
+            margin-top: 1px;
+        }
+        
+        .rank-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .rate-badge {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+        
+        .team-grid .team-box {
+            margin-bottom: 0;
+        }
+        
+        .insight-box {
+            background: #e8f5e9;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 0.9em;
+        }
+        
+        .se-insight {
+            background: #e0f7fa;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        
+        .growth-tables-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 8px;
+        }
+        
+        /* CSV Upload Section */
+        .csv-upload-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .csv-upload-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px dashed #ddd;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .csv-upload-card:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+        
+        .csv-upload-card.uploaded {
+            border-color: #27ae60;
+            border-style: solid;
+            background: #e8f5e9;
+        }
+        
+        .csv-upload-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+        
+        .csv-upload-card.uploaded h4 {
+            color: #27ae60;
+        }
+        
+        .csv-upload-card p {
+            font-size: 0.8em;
+            color: #888;
+            margin-bottom: 12px;
+        }
+        
+        .csv-upload-card input[type="file"] {
+            display: none;
+        }
+        
+        .csv-upload-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .csv-upload-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .csv-upload-card.uploaded .csv-upload-btn {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+        }
+        
+        .upload-status {
+            margin-top: 10px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .upload-status.success {
+            color: #27ae60;
+        }
+        
+        .upload-status.pending {
+            color: #f39c12;
+        }
+        
+        .csv-preview {
+            margin-top: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            display: none;
+        }
+        
+        .csv-preview.active {
+            display: block;
+        }
+        
+        .csv-preview h5 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .csv-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .csv-summary-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .csv-summary-card .label {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+        
+        .csv-summary-card .value {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .preview-table {
+            font-size: 0.85em;
+            margin-top: 15px;
+        }
+        
+        .preview-table th {
+            background: #f5f7fa !important;
+            color: #333 !important;
+            font-weight: 600;
+        }
+        
+        .file-indicator {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 900px) {
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            .growth-tables-row {
+                grid-template-columns: 1fr;
+            }
+            .csv-upload-grid {
+                grid-template-columns: 1fr;
+            }
+            .csv-summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .data-input-panel, .btn-toggle-edit {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 DE LCL Campaign Weekly Flash</h1>
+            <div class="subtitle" id="display-date">Week 4 | January 24, 2025</div>
+            <div class="subtitle">Campaign Period: Jan 12 - Feb 14, 2026</div>
+        </div>
+        
+        <div class="content">
+            <!-- Data Input Section -->
+            <div class="data-input-panel" id="dataInputPanel">
+                <h3>📂 Upload CSV Files from QuickSight</h3>
+                
+                <div class="csv-upload-grid">
+                    <!-- File 1: Unit Growth -->
+                    <div class="csv-upload-card" id="card-growth">
+                        <div class="file-indicator">📊</div>
+                        <h4>1. Unit Growth Data</h4>
+                        <p>DE_LCL_Unit_Growth_*.csv</p>
+                        <label class="csv-upload-btn">
+                            Select File
+                            <input type="file" id="file-growth" accept=".csv" onchange="handleFileUpload('growth', event)">
+                        </label>
+                        <div class="upload-status pending" id="status-growth">⏳ Waiting...</div>
+                    </div>
+                    
+                    <!-- File 2: MCID Regain/Convert -->
+                    <div class="csv-upload-card" id="card-regain">
+                        <div class="file-indicator">🔄</div>
+                        <h4>2. MCID Regain/Convert</h4>
+                        <p>DE_LCL_MCID_Regai_*.csv</p>
+                        <label class="csv-upload-btn">
+                            Select File
+                            <input type="file" id="file-regain" accept=".csv" onchange="handleFileUpload('regain', event)">
+                        </label>
+                        <div class="upload-status pending" id="status-regain">⏳ Waiting...</div>
+                    </div>
+                    
+                    <!-- File 3: SE Convert -->
+                    <div class="csv-upload-card" id="card-se">
+                        <div class="file-indicator">🔧</div>
+                        <h4>3. SE Convert Data</h4>
+                        <p>DE_LCL_MCID_Conve_*.csv</p>
+                        <label class="csv-upload-btn">
+                            Select File
+                            <input type="file" id="file-se" accept=".csv" onchange="handleFileUpload('se', event)">
+                        </label>
+                        <div class="upload-status pending" id="status-se">⏳ Waiting...</div>
+                    </div>
+                </div>
+                
+                <!-- Preview Section -->
+                <div class="csv-preview" id="csv-preview">
+                    <h5>📋 Data Preview</h5>
+                    <div id="preview-content"></div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 25px;">
+                    <button class="btn-update" id="btn-apply" onclick="applyAllData()" disabled>
+                        🚀 Apply Data to Dashboard
+                    </button>
+                    <button class="btn-reset" onclick="resetAllUploads()">
+                        🔄 Reset All
+                    </button>
+                </div>
+            </div>
+            
+            <!-- KEY HIGHLIGHTS -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="emoji">🎯</span>
+                    <span>KEY HIGHLIGHTS</span>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>💪 Outstanding Performance - Exceeding Expectations!</h3>
+                    <p>We've achieved <strong id="display-yoy-growth-text">+305.3%</strong> YOY growth!</p>
+                </div>
+                
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <div class="label">2026 YTD Submit</div>
+                        <div class="value" id="display-2026-submit">1,835,976</div>
+                        <div class="growth">🚀 Units</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="label">2025 YTD Submit</div>
+                        <div class="value" id="display-2025-submit">452,947</div>
+                        <div class="growth">🎯 Units</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="label">YoY Growth</div>
+                        <div class="value" id="display-yoy-diff">+1,383,029</div>
+                        <div class="growth" id="display-yoy-percent">+305.3% 📈</div>
+                    </div>
+                </div>
+                
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <div class="label">Regain/Convert Group ID</div>
+                        <div class="value" id="display-regain-convert-groupid">80</div>
+                        <div class="growth">✅ 个数</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="label">SE Convert</div>
+                        <div class="value" id="display-se-convert">25</div>
+                        <div class="growth">🔧 个数</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="label">Total Group ID</div>
+                        <div class="value" id="display-total-groupid">105</div>
+                        <div class="growth">🎯 个数</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TEAM PERFORMANCE BREAKDOWN -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="emoji">🏆</span>
+                    <span>TEAM PERFORMANCE BREAKDOWN</span>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>2026 Submit</th>
+                            <th>2025 Submit</th>
+                            <th>YoY Growth</th>
+                            <th>% YoY</th>
+                            <th style="text-align: center;">Rank (绝对值 / 增长率)</th>
+                            <th>Group ID 个数</th>
+                        </tr>
+                    </thead>
+                    <tbody id="team-performance-tbody">
+                        <tr data-team="euk">
+                            <td>🌍 EUK</td>
+                            <td id="display-euk-2026">1,476,238</td>
+                            <td id="display-euk-2025">669,352</td>
+                            <td id="display-euk-growth">+806,886</td>
+                            <td id="display-euk-yoy-percent">+120.5%</td>
+                            <td>
+                                <div class="rank-container" style="justify-content: center;">
+                                    <div class="rank-item">
+                                        <span class="rank-badge rank-1" id="display-euk-abs-rank">1</span>
+                                        <span class="rank-label">绝对值</span>
+                                    </div>
+                                    <div class="rank-item">
+                                        <span class="rank-badge rank-3" id="display-euk-rate-rank">3</span>
+                                        <span class="rank-label">增长率</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="groupid-badge" id="display-euk-groupid">60</span></td>
+                        </tr>
+                        <tr data-team="nsa">
+                            <td>🌍 NSA</td>
+                            <td id="display-nsa-2026">184,425</td>
+                            <td id="display-nsa-2025">41,188</td>
+                            <td id="display-nsa-growth">+143,237</td>
+                            <td id="display-nsa-yoy-percent">+347.8%</td>
+                            <td>
+                                <div class="rank-container" style="justify-content: center;">
+                                    <div class="rank-item">
+                                        <span class="rank-badge rank-2" id="display-nsa-abs-rank">2</span>
+                                        <span class="rank-label">绝对值</span>
+                                    </div>
+                                    <div class="rank-item">
+                                        <span class="rank-badge rank-2" id="display-nsa-rate-rank">2</span>
+                                        <span class="rank-label">增长率</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="groupid-badge" id="display-nsa-groupid">12</span></td>
+                        </tr>
+                        <tr class="star-performer" data-team="sam">
+                            <td><strong>🌍 SAM</strong></td>
+                            <td><strong id="display-sam-2026">175,313</strong></td>
+                            <td id="display-sam-2025">5,722</td>
+                            <td><strong id="display-sam-growth">+169,591</strong></td>
+                            <td><strong id="display-sam-yoy-percent">+2963.5%</strong></td>
+                            <td>
+                                <div class="rank-container" style="justify-content: center;">
+                                    <div class="rank-item">
+                                        <span class="rank-badge rank-3" id="display-sam-abs-rank">3</span>
+                                        <span class="rank-label">绝对值</span>
+                                    </div>
+                                    <div class="rank-item">
+                                        <span class="rank-badge rank-1" id="display-sam-rate-rank">1</span>
+                                        <span class="rank-label">增长率</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="groupid-badge" id="display-sam-groupid">8</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="insight-box">
+                    <strong>💡 Key Insight:</strong> 
+                    <span id="insight-abs-team-name">EUK</span> leads in absolute growth (<span id="insight-abs-value">+806,886</span>), 
+                    while <span id="insight-rate-team-name">SAM</span> leads in growth rate (<span id="insight-rate-value">+2963.5%</span>)!
+                </div>
+            </div>
+            
+            <!-- TOP 3 GROWTH SALES BY TEAM -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="emoji">🌟</span>
+                    <span>TOP 3 GROWTH & CONVERT BY TEAM</span>
+                </div>
+                
+                <div class="team-grid">
+                    <!-- EUK Team Box -->
+                    <div class="team-box">
+                        <h3>🏆 EUK Team</h3>
+                        
+                        <div class="growth-tables-row">
+                            <div>
+                                <div class="sub-section-title">📈 Growth Top 3 (by Absolute)</div>
+                                <table class="mini-table">
+                                    <thead>
+                                        <tr><th>Rank</th><th>Sales</th><th>Submit</th><th>Growth</th></tr>
+                                    </thead>
+                                    <tbody id="euk-growth-tbody">
+                                        <tr class="star-performer">
+                                            <td>🥇</td>
+                                            <td><strong id="display-euk-g1-name">Haoran Yang</strong></td>
+                                            <td id="display-euk-g1-submit">285,158</td>
+                                            <td style="color:#27ae60" id="display-euk-g1-growth">+210,695</td>
+                                        </tr>
+                                        <tr>
+                                            <td>🥈</td>
+                                            <td id="display-euk-g2-name">Olina Zhang</td>
+                                            <td id="display-euk-g2-submit">174,749</td>
+                                            <td style="color:#27ae60" id="display-euk-g2-growth">+134,220</td>
+                                        </tr>
+                                        <tr>
+                                            <td>🥉</td>
+                                            <td id="display-euk-g3-name">Phoenix Xu</td>
+                                            <td id="display-euk-g3-submit">155,437</td>
+                                            <td style="color:#27ae60" id="display-euk-g3-growth">+128,397</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <div class="sub-section-title rate">📊 Growth Top 3 (by YoY Rate)</div>
+                                <table class="mini-table rate">
+                                    <thead>
+                                        <tr><th>Rank</th><th>Sales</th><th>Submit</th><th>Rate</th></tr>
+                                    </thead>
+                                    <tbody id="euk-rate-tbody">
+                                        <tr class="star-performer">
+                                            <td>🥇</td>
+                                            <td><strong id="display-euk-r1-name">Phoenix Xu</strong></td>
+                                            <td id="display-euk-r1-submit">155,437</td>
+                                            <td><span class="rate-badge" id="display-euk-r1-rate">+474.9%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>🥈</td>
+                                            <td id="display-euk-r2-name">Olina Zhang</td>
+                                            <td id="display-euk-r2-submit">174,749</td>
+                                            <td><span class="rate-badge" id="display-euk-r2-rate">+331.2%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>🥉</td>
+                                            <td id="display-euk-r3-name">Haoran Yang</td>
+                                            <td id="display-euk-r3-submit">285,158</td>
+                                            <td><span class="rate-badge" id="display-euk-r3-rate">+282.9%</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="sub-section-title convert">💰 Convert Top 3</div>
+                        <table class="mini-table convert">
+                            <thead>
+                                <tr><th>Rank</th><th>Sales</th><th>Group ID 个数</th></tr>
+                            </thead>
+                            <tbody id="euk-convert-tbody">
+                                <tr class="star-performer">
+                                    <td>🥇</td>
+                                    <td><strong id="display-euk-c1-name">Olina Zhang</strong></td>
+                                    <td><strong id="display-euk-c1-groupid">13</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>🥈</td>
+                                    <td id="display-euk-c2-name">Anson Qi</td>
+                                    <td id="display-euk-c2-groupid">7</td>
+                                </tr>
+                                <tr>
+                                    <td>🥉</td>
+                                    <td id="display-euk-c3-name">Stella Wang</td>
+                                    <td id="display-euk-c3-groupid">5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- NSA Team Box -->
+                    <div class="team-box">
+                        <h3>🏆 NSA Team</h3>
+                        
+                        <div class="growth-tables-row">
+                            <div>
+                                <div class="sub-section-title">📈 Growth Top 3 (by Absolute)</div>
+                                <table class="mini-table">
+                                    <thead>
+                                        <tr><th>Rank</th><th>Sales</th><th>Submit</th><th>Growth</th></tr>
+                                    </thead>
+                                    <tbody id="nsa-growth-tbody">
+                                        <tr class="star-performer">
+                                            <td>🥇</td>
+                                            <td><strong id="display-nsa-g1-name">Victor Wang</strong></td>
+                                            <td id="display-nsa-g1-submit">92,537</td>
+                                            <td style="color:#27ae60" id="display-nsa-g1-growth">+57,494</td>
+                                        </tr>
+                                        <tr>
+                                            <td>🥈</td>
+                                            <td id="display-nsa-g2-name">Stella Li</td>
+                                            <td id="display-nsa-g2-submit">15,736</td>
+                                            <td style="color:#27ae60" id="display-nsa-g2-growth">+15,297</td>
+                                        </tr>
+                                        <tr>
+                                            <td>🥉</td>
+                                            <td id="display-nsa-g3-name">Una Cheng</td>
+                                            <td id="display-nsa-g3-submit">13,097</td>
+                                            <td style="color:#27ae60" id="display-nsa-g3-growth">+8,828</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <div class="sub-section-title rate">📊 Growth Top 3 (by YoY Rate)</div>
+                                <table class="mini-table rate">
+                                    <thead>
+                                        <tr><th>Rank</th><th>Sales</th><th>Submit</th><th>Rate</th></tr>
+                                    </thead>
+                                    <tbody id="nsa-rate-tbody">
+                                        <tr class="star-performer">
+                                            <td>🥇</td>
+                                            <td><strong id="display-nsa-r1-name">Stella Li</strong></td>
+                                            <td id="display-nsa-r1-submit">15,736</td>
+                                            <td><span class="rate-badge" id="display-nsa-r1-rate">+3484.6%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>🥈</td>
+                                            <td id="display-nsa-r2-name">Una Cheng</td>
+                                            <td id="display-nsa-r2-submit">13,097</td>
+                                            <td><span class="rate-badge" id="display-nsa-r2-rate">+206.8%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>🥉</td>
+                                            <td id="display-nsa-r3-name">Victor Wang</td>
+                                            <td id="display-nsa-r3-submit">92,537</td>
+                                            <td><span class="rate-badge" id="display-nsa-r3-rate">+164.0%</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="sub-section-title convert">💰 Convert Top 3</div>
+                        <table class="mini-table convert">
+                            <thead>
+                                <tr><th>Rank</th><th>Sales</th><th>Group ID 个数</th></tr>
+                            </thead>
+                            <tbody id="nsa-convert-tbody">
+                                <tr class="star-performer">
+                                    <td>🥇</td>
+                                    <td><strong id="display-nsa-c1-name">Stella Li</strong></td>
+                                    <td><strong id="display-nsa-c1-groupid">3</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>🥈</td>
+                                    <td id="display-nsa-c2-name">Victor Wang</td>
+                                    <td id="display-nsa-c2-groupid">3</td>
+                                </tr>
+                                <tr>
+                                    <td>🥉</td>
+                                    <td id="display-nsa-c3-name">Vanessa Lin</td>
+                                    <td id="display-nsa-c3-groupid">2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- SAM Team Box -->
+                    <div class="team-box">
+                        <h3>🏆 SAM Team</h3>
+                        
+                        <div class="growth-tables-row">
+                            <div>
+                                <div class="sub-section-title">📈 Growth Top 3 (by Absolute)</div>
+                                <table class="mini-table">
+                                    <thead>
+                                        <tr><th>Rank</th><th>Sales</th><th>Submit</th><th>Growth</th></tr>
+                                    </thead>
+                                    <tbody id="sam-growth-tbody">
+                                        <tr class="star-performer">
+                                            <td>🥇</td>
+                                            <td><strong id="display-sam-g1-name">Candice Wen</strong></td>
+                                            <td id="display-sam-g1-submit">104,057</td>
+                                            <td style="color:#27ae60" id="display-sam-g1-growth">+104,057</td>
+                                        </tr>
+                                        <tr>
+                                            <td>🥈</td>
+                                            <td id="display-sam-g2-name">Jin Chen</td>
+                                            <td id="display-sam-g2-submit">17,318</td>
+                                            <td style="color:#27ae60" id="display-sam-g2-growth">+17,318</td>
+                                        </tr>
+                                        <tr>
+                                            <td>🥉</td>
+                                            <td id="display-sam-g3-name">Jonny Liu</td>
+                                            <td id="display-sam-g3-submit">16,158</td>
+                                            <td style="color:#27ae60" id="display-sam-g3-growth">+16,158</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <div class="sub-section-title rate">📊 Growth Top 3 (by YoY Rate)</div>
+                                <table class="mini-table rate">
+                                    <thead>
+                                        <tr><th>Rank</th><th>Sales</th><th>Submit</th><th>Rate</th></tr>
+                                    </thead>
+                                    <tbody id="sam-rate-tbody">
+                                        <tr class="star-performer">
+                                            <td>🥇</td>
+                                            <td><strong id="display-sam-r1-name">Candice Wen</strong></td>
+                                            <td id="display-sam-r1-submit">104,057</td>
+                                            <td><span class="rate-badge" id="display-sam-r1-rate">NEW</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>🥈</td>
+                                            <td id="display-sam-r2-name">Jin Chen</td>
+                                            <td id="display-sam-r2-submit">17,318</td>
+                                            <td><span class="rate-badge" id="display-sam-r2-rate">NEW</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>🥉</td>
+                                            <td id="display-sam-r3-name">Jonny Liu</td>
+                                            <td id="display-sam-r3-submit">16,158</td>
+                                            <td><span class="rate-badge" id="display-sam-r3-rate">NEW</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="sub-section-title convert">💰 Convert Top 3</div>
+                        <table class="mini-table convert">
+                            <thead>
+                                <tr><th>Rank</th><th>Sales</th><th>Group ID 个数</th></tr>
+                            </thead>
+                            <tbody id="sam-convert-tbody">
+                                <tr class="star-performer">
+                                    <td>🥇</td>
+                                    <td><strong id="display-sam-c1-name">Jonny Liu</strong></td>
+                                    <td><strong id="display-sam-c1-groupid">5</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>🥈</td>
+                                    <td id="display-sam-c2-name">Michelle Sun</td>
+                                    <td id="display-sam-c2-groupid">1</td>
+                                </tr>
+                                <tr>
+                                    <td>🥉</td>
+                                    <td id="display-sam-c3-name">Terry Lu</td>
+                                    <td id="display-sam-c3-groupid">1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- SE Team Box -->
+                    <div class="team-box se-team">
+                        <h3>🏆 SE Team</h3>
+                        
+                        <div class="sub-section-title convert">💰 Convert Top 3</div>
+                        <table class="mini-table se">
+                            <thead>
+                                <tr><th>Rank</th><th>SE Name</th><th>Convert MCID#</th></tr>
+                            </thead>
+                            <tbody id="se-convert-tbody">
+                                <tr class="star-performer">
+                                    <td>🥇</td>
+                                    <td><strong id="display-se-c1-name">Nicole Zhou</strong></td>
+                                    <td><strong id="display-se-c1-groupid">4</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>🥈</td>
+                                    <td id="display-se-c2-name">Candice Wang</td>
+                                    <td id="display-se-c2-groupid">4</td>
+                                </tr>
+                                <tr>
+                                    <td>🥉</td>
+                                    <td id="display-se-c3-name">Patrick Zhang</td>
+                                    <td id="display-se-c3-groupid">4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="se-insight">
+                            <strong>💡</strong> SE team contributing <span id="display-se-total">25</span> Convert MCIDs to total success!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ACTION ITEMS -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="emoji">🎯</span>
+                    <span>ACTION ITEMS & NEXT STEPS</span>
+                </div>
+                
+                <div class="action-items">
+                    <div class="action-item">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong>🔴 P0: Maintain momentum through campaign end</strong>
+                                <p style="margin-top: 3px; color: #666;">Owner: All Relevant Sales | COB: Feb 14</p>
+                            </div>
+                            <span class="status-badge status-green">🟢 On Track</span>
+                        </div>
+                    </div>
+                    <div class="action-item">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong>🟡 P1: Continue NSA/SAM growth acceleration</strong>
+                                <p style="margin-top: 3px; color: #666;">POC: Candy Chen / Wen Van | COB: Feb 14</p>
+                            </div>
+                            <span class="status-badge status-green">🟢 Exceeding</span>
+                        </div>
+                    </div>
+                    <div class="action-item">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong>🟢 P1: Leverage SE Convert success</strong>
+                                <p style="margin-top: 3px; color: #666;">POC: Patrick Zhang | COB: Feb 14</p>
+                            </div>
+                            <span class="status-badge status-green">🟢 On Track</span>
+                        </div>
+                    </div>
+                    <div class="action-item">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong>🟢 P2: Best Practices Share -- Top Performers</strong>
+                                <p style="margin-top: 3px; color: #666;">1. Share CUSTOMS knowledge | 2. Update EUK Pricing & SLA</p>
+                            </div>
+                            <span class="status-badge status-green">🟢 In Progress</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Data Source:</strong> DE LCL Campaign Dashboard | <strong>Next Update:</strong> <span id="next-update-date">January 31, 2025</span></p>
+            <p style="margin-top: 10px; font-size: 1.1em;">Let's finish strong and exceed our targets! 💪🚀</p>
+            <button class="btn-toggle-edit" onclick="toggleEditPanel()">⚙</button>
+        </div>
+    </div>
+    
+    <script>
+        // ========== Global Variables ==========
+        const uploadedData = {
+            growth: null,
+            regain: null,
+            se: null
+        };
+        
+        // ========== Initialize ==========
+        function setCurrentDate() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+            const startOfYear = new Date(now.getFullYear(), 0, 1);
+            const weekNum = Math.ceil(((now - startOfYear) / 86400000 + startOfYear.getDay() + 1) / 7);
+            document.getElementById('display-date').textContent = `Week ${weekNum} | ${dateStr}`;
+            const nextUpdate = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+            document.getElementById('next-update-date').textContent = nextUpdate.toLocaleDateString('en-US', options);
+        }
+        setCurrentDate();
+        
+        function toggleEditPanel() {
+            const panel = document.getElementById('dataInputPanel');
+            panel.classList.toggle('active');
+            if (panel.classList.contains('active')) {
+                panel.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // ========== Utility Functions ==========
+        function formatNumber(num) {
+            return Math.abs(Math.round(num)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        
+        function formatWithSign(num) {
+            const rounded = Math.round(num);
+            return (rounded >= 0 ? '+' : '') + formatNumber(rounded);
+        }
+        
+        function calcPercent(current, previous) {
+            if (!previous || previous === 0) return current > 0 ? 9999 : 0;
+            return ((current - previous) / previous * 100).toFixed(1);
+        }
+        
+        function formatRate(yoyValue) {
+            // yoyValue is like 3.84 meaning 384% growth, or 1 meaning NEW
+            if (!yoyValue || yoyValue === 0) return '0%';
+            if (yoyValue === 1) return 'NEW';
+            const percent = (yoyValue - 1) * 100;
+            if (percent > 9000) return 'NEW';
+            return '+' + percent.toFixed(1) + '%';
+        }
+        
+        // ========== CSV Parsing ==========
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current.trim());
+            return result;
+        }
+        
+        function parseCSV(csv) {
+            const lines = csv.split('\n').filter(line => line.trim());
+            if (lines.length === 0) return [];
+            
+            const headers = parseCSVLine(lines[0]);
+            const data = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                const values = parseCSVLine(lines[i]);
+                const row = {};
+                headers.forEach((h, idx) => {
+                    row[h] = values[idx] || '';
+                });
+                data.push(row);
+            }
+            
+            return data;
+        }
+        
+        // ========== File Upload Handlers ==========
+        function handleFileUpload(type, event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const csv = e.target.result;
+                const data = parseCSV(csv);
+                
+                if (type === 'growth') {
+                    uploadedData.growth = processGrowthData(data);
+                } else if (type === 'regain') {
+                    uploadedData.regain = processRegainData(data);
+                } else if (type === 'se') {
+                    uploadedData.se = processSEData(data);
+                }
+                
+                // Update UI
+                updateUploadStatus(type, file.name);
+                checkAllUploaded();
+                updatePreview();
+            };
+            reader.readAsText(file);
+        }
+        
+        function processGrowthData(rawData) {
+            const result = {
+                total2026: 0,
+                total2025: 0,
+                teams: {
+                    EUK: { submit2026: 0, submit2025: 0, salesData: [] },
+                    NSA: { submit2026: 0, submit2025: 0, salesData: [] },
+                    SAM: { submit2026: 0, submit2025: 0, salesData: [] }
+                }
+            };
+            
+            rawData.forEach(row => {
+                const team = row['sales_team'];
+                if (!team || !result.teams[team]) return;
+                
+                const submit2026 = parseFloat(row['26_submit (1/12-Today)']) || 0;
+                const submit2025 = parseFloat(row['25_submit (1/12-Today)']) || 0;
+                const growth = parseFloat(row['26-25 submit gap (1/12-Today)']) || 0;
+                const yoyRate = parseFloat(row['1/12-Today Submit YoY']) || 0;
+                const salesName = row['sales_name'];
+                
+                if (!salesName) return;
+                
+                result.teams[team].submit2026 += submit2026;
+                result.teams[team].submit2025 += submit2025;
+                result.total2026 += submit2026;
+                result.total2025 += submit2025;
+                
+                result.teams[team].salesData.push({
+                    name: salesName,
+                    submit: submit2026,
+                    growth: growth,
+                    yoyRate: yoyRate
+                });
+            });
+            
+            // Calculate Top 3 for each team
+            ['EUK', 'NSA', 'SAM'].forEach(team => {
+                const data = result.teams[team].salesData;
+                
+                // Growth Top 3 (by absolute growth)
+                result.teams[team].growthTop3 = [...data]
+                    .filter(s => s.growth > 0)
+                    .sort((a, b) => b.growth - a.growth)
+                    .slice(0, 3);
+                
+                // Rate Top 3 (by YoY rate, excluding 0 and negative)
+                result.teams[team].rateTop3 = [...data]
+                    .filter(s => s.yoyRate > 0 && s.submit > 0)
+                    .sort((a, b) => b.yoyRate - a.yoyRate)
+                    .slice(0, 3);
+            });
+            
+            return result;
+        }
+        function processRegainData(rawData) {
+            const result = {
+                totalRegainConvert: 0,
+                teams: {
+                    EUK: { total: 0, salesData: [] },
+                    NSA: { total: 0, salesData: [] },
+                    SAM: { total: 0, salesData: [] }
+                }
+            };
+            
+            rawData.forEach(row => {
+                const team = row['sales_team'];
+                if (!team || !result.teams[team]) return;
+                
+                const convertMCID = parseInt(row['Convert MCID#']) || 0;
+                const regainMCID = parseInt(row['Regain MCID#']) || 0;
+                const totalMCID = parseInt(row['Convert/Regain MCID#']) || 0;
+                const groupCount = parseInt(row['Convert/Regain Group#']) || 0;
+                const salesName = row['sales_name'];
+                
+                if (!salesName) return;
+                
+                result.teams[team].total += groupCount;
+                result.totalRegainConvert += groupCount;
+                
+                if (groupCount > 0) {
+                    result.teams[team].salesData.push({
+                        name: salesName,
+                        convert: convertMCID,
+                        regain: regainMCID,
+                        total: totalMCID,
+                        groupCount: groupCount
+                    });
+                }
+            });
+            
+            // Calculate Top 3 for each team
+            ['EUK', 'NSA', 'SAM'].forEach(team => {
+                result.teams[team].convertTop3 = [...result.teams[team].salesData]
+                    .sort((a, b) => b.groupCount - a.groupCount)
+                    .slice(0, 3);
+            });
+            
+            return result;
+        }
+        
+        function processSEData(rawData) {
+            const result = {
+                totalConvert: 0,
+                seData: []
+            };
+            
+            rawData.forEach(row => {
+                const convertCount = parseInt(row['Convert MCID#']) || 0;
+                const seName = row['onboard_sales'];
+                
+                if (!seName) return;
+                
+                result.totalConvert += convertCount;
+                
+                if (convertCount > 0) {
+                    result.seData.push({
+                        name: seName,
+                        convert: convertCount
+                    });
+                }
+            });
+            
+            // Sort and get Top 3
+            result.seTop3 = [...result.seData]
+                .sort((a, b) => b.convert - a.convert)
+                .slice(0, 3);
+            
+            return result;
+        }
+        
+        // ========== UI Update Functions ==========
+        function updateUploadStatus(type, fileName) {
+            const card = document.getElementById(`card-${type}`);
+            const status = document.getElementById(`status-${type}`);
+            
+            card.classList.add('uploaded');
+            status.className = 'upload-status success';
+            status.textContent = `✅ ${fileName.substring(0, 20)}...`;
+        }
+        
+        function checkAllUploaded() {
+            const allUploaded = uploadedData.growth && uploadedData.regain && uploadedData.se;
+            document.getElementById('btn-apply').disabled = !allUploaded;
+        }
+        
+        function updatePreview() {
+            const preview = document.getElementById('csv-preview');
+            const content = document.getElementById('preview-content');
+            
+            if (!uploadedData.growth) {
+                preview.classList.remove('active');
+                return;
+            }
+            
+            preview.classList.add('active');
+            
+            const g = uploadedData.growth;
+            const r = uploadedData.regain;
+            const s = uploadedData.se;
+            
+            const totalGrowth = g.total2026 - g.total2025;
+            const growthRate = g.total2025 > 0 ? ((totalGrowth / g.total2025) * 100).toFixed(1) : 'N/A';
+            const regainConvertTotal = r ? r.totalRegainConvert : 0;
+            const seTotal = s ? s.totalConvert : 0;
+            
+            let html = `
+                <div class="csv-summary-grid">
+                    <div class="csv-summary-card">
+                        <div class="label">2026 Total Submit</div>
+                        <div class="value">${formatNumber(g.total2026)}</div>
+                    </div>
+                    <div class="csv-summary-card">
+                        <div class="label">YoY Growth</div>
+                        <div class="value">+${growthRate}%</div>
+                    </div>
+                    <div class="csv-summary-card">
+                        <div class="label">Total Group ID</div>
+                        <div class="value">${regainConvertTotal + seTotal}</div>
+                    </div>
+                </div>
+                
+                <table class="preview-table">
+                    <thead><tr><th>Team</th><th>2026 Submit</th><th>2025 Submit</th><th>Growth</th><th>Group ID</th></tr></thead>
+                    <tbody>
+            `;
+            
+            ['EUK', 'NSA', 'SAM'].forEach(team => {
+                const t = g.teams[team];
+                const teamGroupID = r ? r.teams[team].total : 0;
+                const growth = t.submit2026 - t.submit2025;
+                
+                html += `
+                    <tr>
+                        <td><strong>${team}</strong></td>
+                        <td>${formatNumber(t.submit2026)}</td>
+                        <td>${formatNumber(t.submit2025)}</td>
+                        <td style="color: #27ae60;">+${formatNumber(growth)}</td>
+                        <td><span class="groupid-badge">${teamGroupID}</span></td>
+                    </tr>
+                `;
+            });
+            
+            html += `</tbody></table>`;
+            content.innerHTML = html;
+        }
+        
+        function resetAllUploads() {
+            uploadedData.growth = null;
+            uploadedData.regain = null;
+            uploadedData.se = null;
+            
+            ['growth', 'regain', 'se'].forEach(type => {
+                const card = document.getElementById(`card-${type}`);
+                const status = document.getElementById(`status-${type}`);
+                const input = document.getElementById(`file-${type}`);
+                
+                card.classList.remove('uploaded');
+                status.className = 'upload-status pending';
+                status.textContent = '⏳ Waiting...';
+                input.value = '';
+            });
+            
+            document.getElementById('btn-apply').disabled = true;
+            document.getElementById('csv-preview').classList.remove('active');
+        }
+        
+        // ========== Apply Data to Dashboard ==========
+        function applyAllData() {
+            if (!uploadedData.growth || !uploadedData.regain || !uploadedData.se) {
+                alert('Please upload all 3 CSV files first!');
+                return;
+            }
+            
+            const g = uploadedData.growth;
+            const r = uploadedData.regain;
+            const s = uploadedData.se;
+            
+            try {
+                // === KEY HIGHLIGHTS ===
+                const s26 = Math.round(g.total2026);
+                const s25 = Math.round(g.total2025);
+                const diff = s26 - s25;
+                const pct = s25 > 0 ? ((diff / s25) * 100).toFixed(1) : 0;
+                
+                document.getElementById('display-2026-submit').textContent = formatNumber(s26);
+                document.getElementById('display-2025-submit').textContent = formatNumber(s25);
+                document.getElementById('display-yoy-diff').textContent = formatWithSign(diff);
+                document.getElementById('display-yoy-percent').textContent = '+' + pct + '% 📈';
+                document.getElementById('display-yoy-growth-text').textContent = '+' + pct + '%';
+                
+                // Regain/Convert Group ID (combined)
+                const regainConvertTotal = r.totalRegainConvert;
+                const seTotal = s.totalConvert;
+                
+                document.getElementById('display-regain-convert-groupid').textContent = regainConvertTotal;
+                document.getElementById('display-se-convert').textContent = seTotal;
+                document.getElementById('display-total-groupid').textContent = regainConvertTotal + seTotal;
+                document.getElementById('display-se-total').textContent = seTotal;
+                
+                // === TEAM PERFORMANCE ===
+                const teamDataForRanks = {};
+                
+                ['EUK', 'NSA', 'SAM'].forEach(team => {
+                    const t = team.toLowerCase();
+                    const teamGrowth = g.teams[team];
+                    const teamRegain = r.teams[team];
+                    
+                    const v26 = Math.round(teamGrowth.submit2026);
+                    const v25 = Math.round(teamGrowth.submit2025);
+                    const growth = v26 - v25;
+                    const rate = v25 > 0 ? ((growth / v25) * 100).toFixed(1) : 9999;
+                    
+                    teamDataForRanks[team] = { v26, v25 };
+                    
+                    document.getElementById(`display-${t}-2026`).textContent = formatNumber(v26);
+                    document.getElementById(`display-${t}-2025`).textContent = formatNumber(v25);
+                    document.getElementById(`display-${t}-growth`).textContent = formatWithSign(growth);
+                    document.getElementById(`display-${t}-yoy-percent`).textContent = '+' + rate + '%';
+                    document.getElementById(`display-${t}-groupid`).textContent = teamRegain.total;
+                });
+                
+                updateTeamRanks(teamDataForRanks);
+                
+                // === TOP 3 BY TEAM ===
+                ['EUK', 'NSA', 'SAM'].forEach(team => {
+                    const t = team.toLowerCase();
+                    const teamGrowth = g.teams[team];
+                    const teamRegain = r.teams[team];
+                    
+                    // Growth Top 3
+                    teamGrowth.growthTop3.forEach((s, idx) => {
+                        const i = idx + 1;
+                        const nameEl = document.getElementById(`display-${t}-g${i}-name`);
+                        const submitEl = document.getElementById(`display-${t}-g${i}-submit`);
+                        const growthEl = document.getElementById(`display-${t}-g${i}-growth`);
+                        
+                        if (nameEl) nameEl.textContent = s.name;
+                        if (submitEl) submitEl.textContent = formatNumber(s.submit);
+                        if (growthEl) growthEl.textContent = '+' + formatNumber(s.growth);
+                    });
+                    
+                    // Rate Top 3
+                    teamGrowth.rateTop3.forEach((s, idx) => {
+                        const i = idx + 1;
+                        const nameEl = document.getElementById(`display-${t}-r${i}-name`);
+                        const submitEl = document.getElementById(`display-${t}-r${i}-submit`);
+                        const rateEl = document.getElementById(`display-${t}-r${i}-rate`);
+                        
+                        if (nameEl) nameEl.textContent = s.name;
+                        if (submitEl) submitEl.textContent = formatNumber(s.submit);
+                        if (rateEl) rateEl.textContent = formatRate(s.yoyRate);
+                    });
+                    
+                    // Convert Top 3
+                    teamRegain.convertTop3.forEach((s, idx) => {
+                        const i = idx + 1;
+                        const nameEl = document.getElementById(`display-${t}-c${i}-name`);
+                        const groupEl = document.getElementById(`display-${t}-c${i}-groupid`);
+                        
+                        if (nameEl) nameEl.textContent = s.name;
+                        if (groupEl) groupEl.textContent = s.groupCount;
+                    });
+                });
+                
+                // === SE TOP 3 ===
+                s.seTop3.forEach((se, idx) => {
+                    const i = idx + 1;
+                    const nameEl = document.getElementById(`display-se-c${i}-name`);
+                    const convertEl = document.getElementById(`display-se-c${i}-groupid`);
+                    
+                    if (nameEl) nameEl.textContent = se.name;
+                    if (convertEl) convertEl.textContent = se.convert;
+                });
+                
+                alert('✅ Dashboard updated successfully!');
+                document.getElementById('dataInputPanel').classList.remove('active');
+                
+            } catch (e) {
+                alert('❌ Error: ' + e.message);
+                console.error(e);
+            }
+        }
+        
+        function updateTeamRanks(teamData) {
+            const teams = ['EUK', 'NSA', 'SAM'];
+            const teamStats = teams.map(team => {
+                if (teamData[team]) {
+                    const d = teamData[team];
+                    const absGrowth = d.v26 - d.v25;
+                    const rateGrowth = d.v25 > 0 ? ((absGrowth / d.v25) * 100) : 9999;
+                    return { team: team.toLowerCase(), name: team, absGrowth, rateGrowth };
+                }
+                return { team: team.toLowerCase(), name: team, absGrowth: 0, rateGrowth: 0 };
+            });
+            
+            const absRankings = [...teamStats].sort((a, b) => b.absGrowth - a.absGrowth);
+            const rateRankings = [...teamStats].sort((a, b) => b.rateGrowth - a.rateGrowth);
+            
+            teams.forEach(team => {
+                const t = team.toLowerCase();
+                const absRank = absRankings.findIndex(r => r.team === t) + 1;
+                const rateRank = rateRankings.findIndex(r => r.team === t) + 1;
+                
+                const absRankEl = document.getElementById(`display-${t}-abs-rank`);
+                if (absRankEl) {
+                    absRankEl.textContent = absRank;
+                    absRankEl.className = `rank-badge rank-${absRank}`;
+                }
+                
+                const rateRankEl = document.getElementById(`display-${t}-rate-rank`);
+                if (rateRankEl) {
+                    rateRankEl.textContent = rateRank;
+                    rateRankEl.className = `rank-badge rank-${rateRank}`;
+                }
+            });
+            
+            // Update insight
+            const topAbs = absRankings[0];
+            const topRate = rateRankings[0];
+            
+            if (topAbs) {
+                document.getElementById('insight-abs-team-name').textContent = topAbs.name;
+                document.getElementById('insight-abs-value').textContent = formatWithSign(topAbs.absGrowth);
+            }
+            if (topRate) {
+                document.getElementById('insight-rate-team-name').textContent = topRate.name;
+                document.getElementById('insight-rate-value').textContent = 
+                    topRate.rateGrowth >= 9999 ? 'N/A (New)' : '+' + topRate.rateGrowth.toFixed(1) + '%';
+            }
+        }
+    </script>
+</body>
+</html>
+        
+       
